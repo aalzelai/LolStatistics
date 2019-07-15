@@ -16,13 +16,12 @@ import java.util.logging.Logger;
 @RestController
 public class ChampionV3Controller {
 
-	@Autowired ChampionV3 championV3Consumer;
+	@Autowired
+    ChampionV3 championV3Consumer;
 	@Autowired
 	MappingService mappingService;
 
 	private static final Logger LOGGER = Logger.getLogger(ChampionV3Controller.class.getName());
-
-	final Gson gson = new Gson();
 
 	@GetMapping(path = "/championRotation")
 	public String get() {

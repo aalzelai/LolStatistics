@@ -27,7 +27,7 @@ public class MappingService {
             List<Champion> champions;
             Type listType = new TypeToken<List<Champion>>() {
             }.getType();
-            champions = gson.fromJson(new FileReader("data/es_ES/champion.json"), listType);
+            champions = gson.fromJson(new FileReader(Constants.CHAMPION_JSON_LOCATION), listType);
             for (Champion championI : champions) {
                 championMap.put(Integer.valueOf(championI.getKey()), championI);
             }

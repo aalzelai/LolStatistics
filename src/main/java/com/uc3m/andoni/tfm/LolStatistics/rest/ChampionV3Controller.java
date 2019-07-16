@@ -28,7 +28,7 @@ public class ChampionV3Controller {
 		String finalResult = "";
         LOGGER.info("FREE CHAMPION ROTATION - GET");
         String result =  championV3Consumer.getChampionRotationInfo();
-        finalResult = mappingService.map(result, Constants.FREE_CHAMPION_ROTATION);
+        finalResult = (String) mappingService.map(result, Constants.GET_SUMMONER_NAME);
         LOGGER.info("FREE CHAMPION ROTATION - GET - OK");
 		return finalResult;
 	}

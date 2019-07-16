@@ -16,10 +16,10 @@ public class ChampionMasteryV4Controller {
 
     private static final Logger LOGGER = Logger.getLogger(ChampionMasteryV4Controller.class.getName());
 
-    @GetMapping(path = "/championRotation")
+    @GetMapping(path = "/dfgsdfgsfg")
     public String get() {
         String finalResult = "";
         return finalResult;
-        LOGGER.info("FREE CHAMPION ROTATION - GET");
+        //LOGGER.info("FREE CHAMPION ROTATION - GET");
     }
 }

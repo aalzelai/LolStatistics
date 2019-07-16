@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.uc3m.andoni.tfm.LolStatistics.models.Champion;
 import com.uc3m.andoni.tfm.LolStatistics.models.FreeChampionRotation;
+import com.uc3m.andoni.tfm.LolStatistics.models.Summoner;
 import constants.Constants;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +37,7 @@ public class MappingService {
         }
     }
 
-    public String map (String input, String service){
+    public Object map (String input, String service){
         String finalResult = "";
         switch (service){
             case Constants.FREE_CHAMPION_ROTATION:
@@ -50,12 +51,17 @@ public class MappingService {
                         LOGGER.warning("Champion " + i + " not found");
                     }
                 }
-                break;
+                return finalResult;
+            case Constants.GET_SUMMONER_NAME:
+                Summoner summoner = gson.fromJson(input, Summoner.class);
+                return summoner;
+
+
             default:
                 break;
 
         }
-        return finalResult;
+        return null;
     }
 
     public Map<Integer, Champion> getChampionMap() {

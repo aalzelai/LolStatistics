@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.uc3m.andoni.tfm.LolStatistics.models.Champion;
 import com.uc3m.andoni.tfm.LolStatistics.models.FreeChampionRotation;
+import com.uc3m.andoni.tfm.LolStatistics.models.LolStatusData;
 import constants.Constants;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +52,9 @@ public class MappingService {
                     }
                 }
                 break;
+        case Constants.LOL_STATUS_DATA:
+            LolStatusData lolStatusData = gson.fromJson(input, LolStatusData.class);
+            finalResult = lolStatusData.toString();
             default:
                 break;
 

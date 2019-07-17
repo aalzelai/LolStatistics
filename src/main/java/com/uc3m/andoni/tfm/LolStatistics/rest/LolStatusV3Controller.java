@@ -26,9 +26,9 @@ public class LolStatusV3Controller {
 		LolStatusData statusData;
 		LOGGER.info("LOL STATUS DATA - GET");
 		String result =  lolStatusV3Consumer.getLolStatusData();
-		finalResult = mappingService.map(result, Constants.LOL_STATUS_DATA);
+		LolStatusData lolStatusData = (LolStatusData) mappingService.map(result, Constants.LOL_STATUS_DATA);
 		LOGGER.info("LOL STATUS DATA - GET - OK");
-		return finalResult;
+		return lolStatusData.toString();
 	}
 
 }

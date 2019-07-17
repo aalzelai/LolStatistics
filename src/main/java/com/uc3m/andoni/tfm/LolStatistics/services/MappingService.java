@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import com.uc3m.andoni.tfm.LolStatistics.models.Champion;
 import com.uc3m.andoni.tfm.LolStatistics.models.FreeChampionRotation;
 import com.uc3m.andoni.tfm.LolStatistics.models.Summoner;
+import com.uc3m.andoni.tfm.LolStatistics.models.LolStatusData;
 import constants.Constants;
 import org.springframework.stereotype.Service;
 
@@ -55,8 +56,9 @@ public class MappingService {
             case Constants.GET_SUMMONER_NAME:
                 Summoner summoner = gson.fromJson(input, Summoner.class);
                 return summoner;
-
-
+        case Constants.LOL_STATUS_DATA:
+            LolStatusData lolStatusData = gson.fromJson(input, LolStatusData.class);
+            return lolStatusData;
             default:
                 break;
 

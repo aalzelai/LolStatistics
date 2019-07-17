@@ -10,11 +10,19 @@ public class SummonerV4 {
     @Autowired
     RestCallingService restCallingService;
 
-    public String getChampionRotationInfo(String summonerName){
-        String result = "";
+    public String getSummonerBySummonerName(String summonerName){
+        return restCallingService.jsonReturnRestService("/lol/summoner/v4/summoners/by-name/" + summonerName);
+    }
 
-        result = restCallingService.jsonReturnRestService("/lol/summoner/v4/summoners/by-name/" + summonerName);
+    public String getSummonerByAccountId(String encryptedAccountId){
+        return restCallingService.jsonReturnRestService("/lol/summoner/v4/summoners/by-account/" + encryptedAccountId);
+    }
 
-        return result;
+    public String getSummonerByPUUID(String encryptedPUUID){
+        return restCallingService.jsonReturnRestService("/lol/summoner/v4/summoners/by-puuid/" + encryptedPUUID);
+    }
+
+    public String getSummonerBySummonerId(String encryptedSummonerId){
+        return restCallingService.jsonReturnRestService("/lol/summoner/v4/summoners/" + encryptedSummonerId);
     }
 }

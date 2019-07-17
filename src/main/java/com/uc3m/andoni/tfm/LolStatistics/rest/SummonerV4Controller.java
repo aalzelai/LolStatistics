@@ -21,13 +21,36 @@ public class SummonerV4Controller {
 
     private static final Logger LOGGER = Logger.getLogger(SummonerV4Controller.class.getName());
 
-    @GetMapping(path = "/getSummoner/{summoner}")
+    @GetMapping(path = "/getSummonerByName/{summoner}")
         public String get(@PathVariable String summoner) {
-        String finalResult = "";
-        LOGGER.info("FREE CHAMPION ROTATION - GET");
-        String result = summonerV4Consumer.getChampionRotationInfo(summoner);
+        LOGGER.info("SUMMONER BY SUMMONER NAME - GET");
+        String result = summonerV4Consumer.getSummonerBySummonerName(summoner);
         Summoner summonerObj = (Summoner) mappingService.map(result, Constants.GET_SUMMONER_NAME);
-        return finalResult;
+        return summonerObj.toString();
+    }
+
+    @GetMapping(path = "/getSummonerByAccountId/{encryptedAccountId}")
+    public String getSummonerByAccountId(@PathVariable String encryptedAccountId) {
+        LOGGER.info("SUMMONER BY ACCOUNT ID - GET");
+        String result = summonerV4Consumer.getSummonerByAccountId(encryptedAccountId);
+        Summoner summonerObj = (Summoner) mappingService.map(result, Constants.GET_SUMMONER_NAME);
+        return summonerObj.toString();
+    }
+
+    @GetMapping(path = "/getSummonerByPUUID/{encryptedPUUID}")
+    public String getSummonerByPUUID(@PathVariable String encryptedPUUID) {
+        LOGGER.info("SUMMONER BY PUUID - GET");
+        String result = summonerV4Consumer.getSummonerByPUUID(encryptedPUUID);
+        Summoner summonerObj = (Summoner) mappingService.map(result, Constants.GET_SUMMONER_NAME);
+        return summonerObj.toString();
+    }
+
+    @GetMapping(path = "/getSummonerBySummonerId/{encryptedSummonerId}")
+    public String getSummonerBySummonerId(@PathVariable String encryptedSummonerId) {
+        LOGGER.info("SUMMONER BY SUMMONER ID - GET");
+        String result = summonerV4Consumer.getSummonerBySummonerId(encryptedSummonerId);
+        Summoner summonerObj = (Summoner) mappingService.map(result, Constants.GET_SUMMONER_NAME);
+        return summonerObj.toString();
     }
 
 }

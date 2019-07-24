@@ -7,4 +7,6 @@ public final class Constants {
 	public static final String FREE_CHAMPION_ROTATION = "freeChampionRotation";
 	public static final String GET_SUMMONER_NAME = "getSummonerName";
 	public static final String LOL_STATUS_DATA = "lolStatusData";
+	public static final String GET_CHAMPION_MASTERY = "championMastery";
+	public static final String GET_CHAMPION_MASTERY_BY_CHAMPION = "championMasteryByChampion";
 }

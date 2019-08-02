@@ -18,4 +18,8 @@ public class ChampionMasteryV4 {
         return restCallingService.jsonReturnRestService("/lol/champion-mastery/v4/champion-masteries/by-summoner/" + summonerName + "/by-champion/" + champion);
     }
 
+    public int getTotalMasteryScoreForummoner(String summonerName){
+        return restCallingService.integerReturnRestService("/lol/champion-mastery/v4/scores/by-summoner/" + summonerName);
+    }
+
 }

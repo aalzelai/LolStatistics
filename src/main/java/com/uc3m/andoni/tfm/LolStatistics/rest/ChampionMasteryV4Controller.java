@@ -49,4 +49,14 @@ public class ChampionMasteryV4Controller {
 
         return championMasteryDTO.toString();
     }
+    @GetMapping(path = "/getTotalChampionMasteryScore/{summoner}")
+    public String getChampionMasteriesFromSummonerAndChampionId(@PathVariable String summoner) {
+        Summoner summonerObj = (Summoner) mappingService.map(summonerV4.getSummonerBySummonerName(summoner), Constants.GET_SUMMONER_NAME);
+        LOGGER.info("TOTAL MASTERY SCORE FOR SUMMONER - " + summonerObj.getId());
+
+        Integer championMasteryScore = championV4Consumer.getTotalMasteryScoreForummoner(summonerObj.getId());
+
+        return championMasteryScore.toString();
+    }
+
 }

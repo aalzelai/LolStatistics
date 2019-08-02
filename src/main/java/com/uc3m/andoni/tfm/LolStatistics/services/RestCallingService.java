@@ -16,4 +16,13 @@ public class RestCallingService {
 
 		return result;
 	}
+
+	public Integer integerReturnRestService(String apiCall){
+		String result = "";
+
+		RestTemplate restTemplate = new RestTemplate();
+		result = restTemplate.getForObject("https://euw1.api.riotgames.com"  + apiCall + Constants.API_KEY, String.class);
+
+		return Integer.valueOf(result);
+	}
 }

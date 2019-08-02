@@ -2,10 +2,7 @@ package com.uc3m.andoni.tfm.LolStatistics.services;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.uc3m.andoni.tfm.LolStatistics.models.Champion;
-import com.uc3m.andoni.tfm.LolStatistics.models.FreeChampionRotation;
-import com.uc3m.andoni.tfm.LolStatistics.models.Summoner;
-import com.uc3m.andoni.tfm.LolStatistics.models.LolStatusData;
+import com.uc3m.andoni.tfm.LolStatistics.models.*;
 import constants.Constants;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +18,7 @@ import java.util.logging.Logger;
 public class MappingService {
 
     Map<Integer, Champion> championMap = new HashMap<>();
+    Map<String, Champion> championNameMap = new HashMap<>();
     final Gson gson = new Gson();
     private static final Logger LOGGER = Logger.getLogger(MappingService.class.getName());
 
@@ -32,6 +30,7 @@ public class MappingService {
             champions = gson.fromJson(new FileReader(Constants.CHAMPION_JSON_LOCATION), listType);
             for (Champion championI : champions) {
                 championMap.put(Integer.valueOf(championI.getKey()), championI);
+                championNameMap.put(championI.getName(), championI);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -56,9 +55,20 @@ public class MappingService {
             case Constants.GET_SUMMONER_NAME:
                 Summoner summoner = gson.fromJson(input, Summoner.class);
                 return summoner;
-        case Constants.LOL_STATUS_DATA:
+
+            case Constants.LOL_STATUS_DATA:
             LolStatusData lolStatusData = gson.fromJson(input, LolStatusData.class);
             return lolStatusData;
+
+        case Constants.GET_CHAMPION_MASTERY:
+            Type listType = new TypeToken<ChampionMasteryDTO>(){}.getType();
+            List<ChampionMasteryDTO> championMasteryDTOs = gson.fromJson(input, List.class);
+            return championMasteryDTOs;
+
+        case Constants.GET_CHAMPION_MASTERY_BY_CHAMPION:
+            ChampionMasteryDTO championMasteryDTO = gson.fromJson(input, ChampionMasteryDTO.class);
+            return championMasteryDTO;
+
             default:
                 break;
 
@@ -72,5 +82,13 @@ public class MappingService {
 
     public void setChampionMap(Map<Integer, Champion> championMap) {
         this.championMap = championMap;
+    }
+
+    public Map<String, Champion> getChampionNameMap() {
+        return championNameMap;
+    }
+
+    public void setChampionNameMap(Map<String, Champion> championNameMap) {
+        this.championNameMap = championNameMap;
     }
 }

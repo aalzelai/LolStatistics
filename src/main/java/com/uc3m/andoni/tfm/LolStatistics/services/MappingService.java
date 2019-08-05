@@ -12,6 +12,7 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.logging.Logger;
 
 @Service
@@ -68,7 +69,12 @@ public class MappingService {
         case Constants.GET_CHAMPION_MASTERY_BY_CHAMPION:
             ChampionMasteryDTO championMasteryDTO = gson.fromJson(input, ChampionMasteryDTO.class);
             return championMasteryDTO;
-
+        case Constants.GET_CHALLENGER_LEAGUE:
+            LeagueList leagueList = gson.fromJson(input, LeagueList.class);
+            return leagueList;
+        case Constants.ENTRIES_BY_SUMMONER:
+            Set<LeagueEntry> entries = gson.fromJson(input, Set.class);
+            return entries;
             default:
                 break;
 

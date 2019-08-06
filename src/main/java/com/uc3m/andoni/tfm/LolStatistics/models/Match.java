@@ -5,7 +5,7 @@ import java.util.List;
 public class Match {
 	int seasonId;
 	int queueId;
-	int gameId;
+	long gameId;
 	List<ParticipantIdentity> participantIdentities;
 	String gameVersion;
 	String platformId;
@@ -33,11 +33,11 @@ public class Match {
 		this.queueId = queueId;
 	}
 
-	public int getGameId() {
+	public long getGameId() {
 		return gameId;
 	}
 
-	public void setGameId(int gameId) {
+	public void setGameId(long gameId) {
 		this.gameId = gameId;
 	}
 

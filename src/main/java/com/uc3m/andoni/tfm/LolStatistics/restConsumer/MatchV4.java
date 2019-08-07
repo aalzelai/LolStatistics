@@ -16,4 +16,8 @@ public class MatchV4 {
 	public String getMatchListForSummoner(String accountId){
 		return restCallingService.jsonReturnRestService("/lol/match/v4/matchlists/by-account/" + accountId);
 	}
+
+	public String getMatchTimelineByMatchId(String matchId){
+		return restCallingService.jsonReturnRestService("/lol/match/v4/timelines/by-match/" + matchId);
+	}
 }

@@ -13,4 +13,5 @@ public final class Constants {
 	public static final String ENTRIES_BY_SUMMONER = "entriesBySummoner";
 	public static final String GET_MATCH = "getMatch";
 	public static final String GET_MATCH_LIST = "getMatchList";
+	public static final String GET_MATCH_TIMELINE = "getMatchTimeline";
 }

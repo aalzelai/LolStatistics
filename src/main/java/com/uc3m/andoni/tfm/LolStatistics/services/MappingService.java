@@ -81,6 +81,9 @@ public class MappingService {
             case Constants.GET_MATCH_LIST:
                 MatchList matchList = gson.fromJson(input, MatchList.class);
                 return matchList;
+            case Constants.GET_MATCH_TIMELINE:
+                MatchTimeline matchTimeline = gson.fromJson(input, MatchTimeline.class);
+                return matchTimeline;
             default:
                     break;
 

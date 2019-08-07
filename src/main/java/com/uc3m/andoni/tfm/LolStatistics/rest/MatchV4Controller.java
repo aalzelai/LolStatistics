@@ -2,6 +2,7 @@ package com.uc3m.andoni.tfm.LolStatistics.rest;
 
 import com.uc3m.andoni.tfm.LolStatistics.models.Match;
 import com.uc3m.andoni.tfm.LolStatistics.models.MatchList;
+import com.uc3m.andoni.tfm.LolStatistics.models.MatchTimeline;
 import com.uc3m.andoni.tfm.LolStatistics.models.Summoner;
 import com.uc3m.andoni.tfm.LolStatistics.restConsumer.MatchV4;
 import com.uc3m.andoni.tfm.LolStatistics.restConsumer.SummonerV4;
@@ -25,7 +26,7 @@ public class MatchV4Controller {
 
 	@GetMapping(path = "getMatchById/{matchId}")
 	public String getMatchById(@PathVariable String matchId){
-		LOGGER.info("SUMMONER BY SUMMONER NAME - GET");
+		LOGGER.info("GET MATCH BY MATCH ID");
 		String result = matchV4Consumer.getMatchById(matchId);
 		Match matchObj = (Match) mappingService.map(result, Constants.GET_MATCH);
 		return matchObj.toString();
@@ -39,5 +40,12 @@ public class MatchV4Controller {
 		return matchList.toString();
 
 
+	}
+
+	@GetMapping(path = "getMatchTimeline/{matchId}")
+	public String getMatchTimelineByMatchId(String matchId){
+		LOGGER.info("MATCH TIMELINE FOR MATCH - " + matchId);
+		MatchTimeline matchTimeline = (MatchTimeline) mappingService.map(matchV4Consumer.getMatchTimelineByMatchId(matchId), Constants.GET_MATCH_TIMELINE);
+		return  matchTimeline.toString();
 	}
 }

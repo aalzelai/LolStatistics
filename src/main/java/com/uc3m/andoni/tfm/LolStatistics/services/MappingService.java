@@ -58,25 +58,34 @@ public class MappingService {
                 return summoner;
 
             case Constants.LOL_STATUS_DATA:
-            LolStatusData lolStatusData = gson.fromJson(input, LolStatusData.class);
-            return lolStatusData;
+                LolStatusData lolStatusData = gson.fromJson(input, LolStatusData.class);
+                return lolStatusData;
 
-        case Constants.GET_CHAMPION_MASTERY:
-            Type listType = new TypeToken<ChampionMasteryDTO>(){}.getType();
-            List<ChampionMasteryDTO> championMasteryDTOs = gson.fromJson(input, List.class);
-            return championMasteryDTOs;
+            case Constants.GET_CHAMPION_MASTERY:
+                Type listType = new TypeToken<ChampionMasteryDTO>(){}.getType();
+                List<ChampionMasteryDTO> championMasteryDTOs = gson.fromJson(input, List.class);
+                return championMasteryDTOs;
 
-        case Constants.GET_CHAMPION_MASTERY_BY_CHAMPION:
-            ChampionMasteryDTO championMasteryDTO = gson.fromJson(input, ChampionMasteryDTO.class);
-            return championMasteryDTO;
-        case Constants.GET_CHALLENGER_LEAGUE:
-            LeagueList leagueList = gson.fromJson(input, LeagueList.class);
-            return leagueList;
-        case Constants.ENTRIES_BY_SUMMONER:
-            Set<LeagueEntry> entries = gson.fromJson(input, Set.class);
-            return entries;
+            case Constants.GET_CHAMPION_MASTERY_BY_CHAMPION:
+                ChampionMasteryDTO championMasteryDTO = gson.fromJson(input, ChampionMasteryDTO.class);
+                return championMasteryDTO;
+            case Constants.GET_CHALLENGER_LEAGUE:
+                LeagueList leagueList = gson.fromJson(input, LeagueList.class);
+                return leagueList;
+            case Constants.ENTRIES_BY_SUMMONER:
+                Set<LeagueEntry> entries = gson.fromJson(input, Set.class);
+                return entries;
+            case Constants.GET_MATCH:
+                Match match = gson.fromJson(input, Match.class);
+                return match;
+            case Constants.GET_MATCH_LIST:
+                MatchList matchList = gson.fromJson(input, MatchList.class);
+                return matchList;
+            case Constants.GET_MATCH_TIMELINE:
+                MatchTimeline matchTimeline = gson.fromJson(input, MatchTimeline.class);
+                return matchTimeline;
             default:
-                break;
+                    break;
 
         }
         return null;

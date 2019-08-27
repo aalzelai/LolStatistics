@@ -2,6 +2,7 @@ package com.uc3m.andoni.tfm.LolStatistics.rest;
 
 import com.uc3m.andoni.tfm.LolStatistics.models.Summoner;
 import com.uc3m.andoni.tfm.LolStatistics.restConsumer.SummonerV4;
+import com.uc3m.andoni.tfm.LolStatistics.services.CassandraService;
 import com.uc3m.andoni.tfm.LolStatistics.services.MappingService;
 import constants.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ public class SummonerV4Controller {
     SummonerV4 summonerV4Consumer;
     @Autowired
     MappingService mappingService;
+    @Autowired CassandraService cassandraService;
 
     private static final Logger LOGGER = Logger.getLogger(SummonerV4Controller.class.getName());
 
@@ -26,6 +28,7 @@ public class SummonerV4Controller {
         LOGGER.info("SUMMONER BY SUMMONER NAME - GET");
         String result = summonerV4Consumer.getSummonerBySummonerName(summoner);
         Summoner summonerObj = (Summoner) mappingService.map(result, Constants.GET_SUMMONER_NAME);
+        cassandraService.insertSummoner(summonerObj);
         return summonerObj.toString();
     }
 
@@ -34,6 +37,7 @@ public class SummonerV4Controller {
         LOGGER.info("SUMMONER BY ACCOUNT ID - GET");
         String result = summonerV4Consumer.getSummonerByAccountId(encryptedAccountId);
         Summoner summonerObj = (Summoner) mappingService.map(result, Constants.GET_SUMMONER_NAME);
+        cassandraService.insertSummoner(summonerObj);
         return summonerObj.toString();
     }
 
@@ -42,6 +46,7 @@ public class SummonerV4Controller {
         LOGGER.info("SUMMONER BY PUUID - GET");
         String result = summonerV4Consumer.getSummonerByPUUID(encryptedPUUID);
         Summoner summonerObj = (Summoner) mappingService.map(result, Constants.GET_SUMMONER_NAME);
+        cassandraService.insertSummoner(summonerObj);
         return summonerObj.toString();
     }
 
@@ -50,6 +55,7 @@ public class SummonerV4Controller {
         LOGGER.info("SUMMONER BY SUMMONER ID - GET");
         String result = summonerV4Consumer.getSummonerBySummonerId(encryptedSummonerId);
         Summoner summonerObj = (Summoner) mappingService.map(result, Constants.GET_SUMMONER_NAME);
+        cassandraService.insertSummoner(summonerObj);
         return summonerObj.toString();
     }
 

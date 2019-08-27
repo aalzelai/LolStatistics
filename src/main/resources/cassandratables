@@ -1,0 +1,1 @@
+create table summoner (id varchar primary key, accountId varchar, puuid varchar, name varchar, profileIcon int, revisionDate long, summonerLevel int);

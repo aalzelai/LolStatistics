@@ -1,1 +1,3 @@
-create table summoner (id varchar primary key, accountId varchar, puuid varchar, name varchar, profileIcon int, revisionDate long, summonerLevel int);
+create table summoner (id varchar primary key, accountId varchar, puuid varchar, name varchar, profileIcon int, revisionDate bigint, summonerLevel int);
+create table championMastery(summonerId varchar, championId bigint, chestGranted boolean, championLevel int, championPoints int, championPointsUntilNextLevel bigint, lastPlayTime bigint, tokensEarned int, championPointsSinceLastLevel bigint, PRIMARY KEY (summonerId, championId));
+

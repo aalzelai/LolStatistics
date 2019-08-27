@@ -5,6 +5,7 @@ import com.uc3m.andoni.tfm.LolStatistics.models.Summoner;
 import com.uc3m.andoni.tfm.LolStatistics.restConsumer.ChampionMasteryV4;
 import com.uc3m.andoni.tfm.LolStatistics.restConsumer.ChampionV3;
 import com.uc3m.andoni.tfm.LolStatistics.restConsumer.SummonerV4;
+import com.uc3m.andoni.tfm.LolStatistics.services.CassandraService;
 import com.uc3m.andoni.tfm.LolStatistics.services.MappingService;
 import constants.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,8 @@ public class ChampionMasteryV4Controller {
     @Autowired
     MappingService mappingService;
 
+    @Autowired CassandraService cassandraService;
+
     private static final Logger LOGGER = Logger.getLogger(ChampionMasteryV4Controller.class.getName());
 
     @GetMapping(path = "/getChampionMasteriesFromSummonerId/{summoner}")
@@ -34,7 +37,9 @@ public class ChampionMasteryV4Controller {
 
         LOGGER.info("CHAMPION MASTERIES FOR SUMMONER - " + summonerObj.getId());
         List<ChampionMasteryDTO> championMasteryDTO = (List<ChampionMasteryDTO>) mappingService.map(championV4Consumer.getChampionMasteriesFromSummonerId(summonerObj.getId()), Constants.GET_CHAMPION_MASTERY);
-
+       /* for(ChampionMasteryDTO championMasteryDTOindex : championMasteryDTO){
+            cassandraService.insertChampionMastery(championMasteryDTOindex);
+        }*/
         return championMasteryDTO.toString();
     }
 
@@ -46,7 +51,7 @@ public class ChampionMasteryV4Controller {
 
 
         ChampionMasteryDTO championMasteryDTO = (ChampionMasteryDTO) mappingService.map(championV4Consumer.getChampionMasteriesFromSummonerAndChampionId(summonerObj.getId(), mappingService.getChampionNameMap().get(champion).getKey()), Constants.GET_CHAMPION_MASTERY_BY_CHAMPION);
-
+        cassandraService.insertChampionMastery(championMasteryDTO);
         return championMasteryDTO.toString();
     }
     @GetMapping(path = "/getTotalChampionMasteryScore/{summoner}")

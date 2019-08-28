@@ -1,5 +1,6 @@
 package com.uc3m.andoni.tfm.LolStatistics.rest;
 
+import com.google.gson.internal.LinkedTreeMap;
 import com.uc3m.andoni.tfm.LolStatistics.models.ChampionMasteryDTO;
 import com.uc3m.andoni.tfm.LolStatistics.models.Summoner;
 import com.uc3m.andoni.tfm.LolStatistics.restConsumer.ChampionMasteryV4;
@@ -36,10 +37,11 @@ public class ChampionMasteryV4Controller {
         Summoner summonerObj = (Summoner) mappingService.map(summonerV4.getSummonerBySummonerName(summoner), Constants.GET_SUMMONER_NAME);
 
         LOGGER.info("CHAMPION MASTERIES FOR SUMMONER - " + summonerObj.getId());
-        List<ChampionMasteryDTO> championMasteryDTO = (List<ChampionMasteryDTO>) mappingService.map(championV4Consumer.getChampionMasteriesFromSummonerId(summonerObj.getId()), Constants.GET_CHAMPION_MASTERY);
-       /* for(ChampionMasteryDTO championMasteryDTOindex : championMasteryDTO){
-            cassandraService.insertChampionMastery(championMasteryDTOindex);
-        }*/
+        List<LinkedTreeMap> championMasteryDTO = (List<LinkedTreeMap>) mappingService.map(championV4Consumer.getChampionMasteriesFromSummonerId(summonerObj.getId()), Constants.GET_CHAMPION_MASTERY);
+
+        for(LinkedTreeMap championMasteryDTOindex : championMasteryDTO){
+            cassandraService.insertChampionMasteryFromList(championMasteryDTOindex);
+        }
         return championMasteryDTO.toString();
     }
 
